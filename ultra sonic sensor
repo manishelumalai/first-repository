@@ -1,0 +1,29 @@
+int trigger=8;
+int echo=9;
+int buzz=10;
+int duration;
+int distance;
+void setup()
+{
+  pinMode(trigger,OUTPUT);
+  pinMode(echo,INPUT);
+  pinMode(buzz,OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+digitalWrite(trigger,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigger,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigger,LOW);
+  delayMicroseconds(2);
+  duration=pulseIn(echo,HIGH);
+  distance=duration*0.034/2;
+  Serial.print(distance);
+  Serial.println("cm");
+  if(distance<70)
+  {digitalWrite(buzz,HIGH);}
+  else
+  { digitalWrite(buzz,LOW);}
+}
